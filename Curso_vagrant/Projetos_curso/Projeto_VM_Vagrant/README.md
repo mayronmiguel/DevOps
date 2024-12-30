@@ -43,4 +43,4 @@ A Sincronização de Pastas, temos a pasta sync no host nela temos que colocar o
 ```
 ## Link do repositório GitHub
 
-https://github.com/mayronmiguel/DevOps/new/main/Curso_vagrant/Projetos_curso
+https://github.com/mayronmiguel/DevOps/tree/main/Curso_vagrant/Projetos_curso
