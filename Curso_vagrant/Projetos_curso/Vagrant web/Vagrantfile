@@ -1,0 +1,17 @@
+# Vagrantfile
+Vagrant.configure("2") do |config|
+  # Define a box oficial
+  config.vm.box = "ubuntu/focal64" # Ubuntu 20.04
+
+  # Nome da máquina virtual
+  config.vm.hostname = "nginx-vm"
+
+  # Sincronização de pastas
+  config.vm.synced_folder "E:/Arquivos TI/Curso_vagrant/Projetos_curso/Vagrant web/site", "/var/www/html", type: "virtualbox"
+
+  # Provisionamento com script
+  config.vm.provision "shell", path: "provision.sh"
+
+  # Configuração de rede
+  config.vm.network "private_network", ip: "192.168.33.10"
+end
