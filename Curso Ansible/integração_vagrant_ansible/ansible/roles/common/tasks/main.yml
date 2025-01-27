@@ -1,0 +1,53 @@
+---
+- name: update cache
+  apt:
+    update_cache: yes
+
+- name: update SO
+  apt:
+    name: "*"
+    state: present
+
+- name: install packages
+  apt:
+    name:
+      - vim
+      - curl
+      - telnet
+      - unzip
+      - wget
+      - net-tools
+      - htop
+      - nmap
+    state: present
+
+- name: Criar usuário com o nome fornecido
+  user:
+    name: "{{ root }}"  # Variável para nome do usuário
+    state: present
+    create_home: yes
+    shell: /bin/bash
+    password: "{{ '' }}"  # Não é necessário senha, deixa em branco
+
+- name: Criar diretório .ssh para o usuário
+  file:
+    path: "/home/{{ root }}/.ssh"
+    state: directory
+    mode: '0700'
+    owner: "{{ root }}"
+    group: "{{ root }}"
+
+- name: Copiar a chave pública SSH para o usuário
+  copy:
+    src: "{{ chave_ssh_publica }}"
+    dest: "/home/{{ root }}/.ssh/authorized_keys"
+    mode: '0600'
+    owner: "{{ root }}"
+    group: "{{ root }}"
+
+- name: Garantir que a chave SSH do usuário está configurada corretamente
+  file:
+    path: "/home/{{ root }}/.ssh/authorized_keys"
+    owner: "{{ root }}"
+    group: "{{ root }}"
+    mode: '0600'

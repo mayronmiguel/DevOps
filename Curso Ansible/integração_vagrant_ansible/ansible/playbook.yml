@@ -1,0 +1,10 @@
+---
+- name: Configurar servidor com Ansible
+  hosts: localhost
+  become: true
+  roles:
+   - nginx
+
+  tasks:
+    - name: Garantir que o Ansible esteja configurado e pronto
+      ansible.builtin.setup:

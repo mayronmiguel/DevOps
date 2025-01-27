@@ -1,0 +1,6 @@
+---
+- name: Configurar servidor com role common
+  hosts: all  # Alvo de hosts (todos os hosts definidos no seu inventário)
+  become: yes  # Permite executar as tarefas como superusuário
+  roles:
+    - common  # Executa a role 'common'
